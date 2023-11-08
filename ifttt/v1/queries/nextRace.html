@@ -1,0 +1,26 @@
+<html><body id="output"></body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    //Get next race from ergast and dump return 
+    var dataresult = "";
+
+    $.ajax({
+        url: "https://ergast.com/api/f1/current/next.json",
+        context: document.body
+    }).done(function(data) {
+        var result = data.MRData.RaceTable.Races[0];
+        
+        console.log(result);
+        dataresult = {
+            "race_name": result.raceName,
+            "race_circuit": result.Circuit.circuitName,
+            "race_location": result.Circuit.Location.country + ", " + result.Circuit.Location.locality,
+            "race_date": result.date,
+            "race_time": result.time
+        }
+        
+        $('#output').text(JSON.stringify(dataresult));
+
+    });
+</script>
+</html>
