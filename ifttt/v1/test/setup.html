@@ -15,8 +15,20 @@
     req.onload = function() {
 
         //TODO get headers checked on load
-        var headers = req.getAllResponseHeaders().toLowerCase();
-        console.log(headers.split('\n'));
+        var headers = req.getAllResponseHeaders().toLowerCase().split('\n');
+        var finalHeaders = [];
+
+        headers.forEach(header => {
+            var headInfo = header.split(':');
+
+            finalHeaders.push({
+                key: headInfo[0],
+                value: headInfo[1]
+            });
+
+        });
+
+        console.log(finalHeaders);
 
 
         var dataresult = {
