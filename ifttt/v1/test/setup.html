@@ -21,14 +21,11 @@
         headers.forEach(header => {
             var headInfo = header.split(':');
 
-            finalHeaders.push({
-                key: headInfo[0],
-                value: headInfo[1]
-            });
+            if(key == 'IFTTT-Channel-Key' || key == 'IFTTT-Service-Key'){
+                finalHeaders[headInfo[0]] = headInfo[1];
+            }
 
         });
-
-        console.log(finalHeaders);
 
 
         var dataresult = {
