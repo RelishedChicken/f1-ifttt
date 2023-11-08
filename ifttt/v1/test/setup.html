@@ -7,13 +7,27 @@
     <body id="output"></body>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
-    //Get next race from ergast and dump return 
-    var dataresult = {
-        "data": {
-            "samples": {
+
+    //Get headers
+    var req = new XMLHttpRequest();
+    req.open('GET', document.location, true);
+    req.send(null);
+    req.onload = function() {
+
+        //TODO get headers checked on load
+        var headers = req.getAllResponseHeaders().toLowerCase();
+        console.log(headers);
+
+
+        var dataresult = {
+            "data": {
+                "samples": {
+                }
             }
-        }
-    };        
-    $('#output').text(JSON.stringify(dataresult));
+        };
+
+        $('#output').text(JSON.stringify(dataresult));
+    };
+
 </script>
 </html>
